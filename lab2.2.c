@@ -44,6 +44,8 @@ int main()
 		perror("Error in setting attributes");
 		abort();
 	}
+	
+	clock_t begin = clock();
 	for (int i = 0; i < 4; i++)
 	{
 		if (pthread_create(&threads[i], &attrs, sum, &parts[i]) != 0)
@@ -53,8 +55,7 @@ int main()
 		}
 	}
 	pthread_attr_destroy(&attrs);
-
-    clock_t begin = clock();
+    
     for (int i = 0; i < 4; i++)
     {
     	if (pthread_join(threads[i], NULL) != 0)
