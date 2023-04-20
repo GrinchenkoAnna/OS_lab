@@ -11,21 +11,16 @@ void* Thread(void* pParams);
 
 int main(void)
 {
-	pthread_t thread_id;	
+	pthread_t thread_id;
 	pthread_create(&thread_id, NULL, &Thread, NULL);
 	
 	pthread_spin_init(&lock, PTHREAD_PROCESS_PRIVATE);
-	pthread_spin_init(&lock1, PTHREAD_PROCESS_PRIVATE);
-	pthread_spin_init(&lock2, PTHREAD_PROCESS_PRIVATE);
+	//pthread_spin_init(&lock1, PTHREAD_PROCESS_PRIVATE);
+	//pthread_spin_init(&lock2, PTHREAD_PROCESS_PRIVATE);
 	
-	//pthread_spinlock_t print_lock;
-	//pthread_spin_init(&print_lock, PTHREAD_PROCESS_PRIVATE);
-	
-	while(counter < 1000) 
+	while(counter < 5000) 
 	{ 
-		//pthread_spin_lock(&lock1); 
-		printf("%s %d\n", sh, counter); 
-		//pthread_spin_unlock(&lock1); 
+		printf("%s %d\n", sh, counter); 		
 	}	
 	
 	return 0;
@@ -45,7 +40,7 @@ void* Thread(void* pParams)
 			sh[3]='l';
 			sh[4]='o';
 			sh[5]='\0';
-			//pthread_spin_unlock(&lock);
+			pthread_spin_unlock(&lock);
 		}
 		else
 		{
@@ -56,13 +51,11 @@ void* Thread(void* pParams)
 			sh[3]='_';
 			sh[4]='u';
 			sh[5]='\0';
-			//pthread_spin_unlock(&lock2);
+			pthread_spin_unlock(&lock);
 		}
-		//pthread_spin_lock(&lock1);
+		//pthread_spin_lock(&lock);
 		counter++;
-		pthread_spin_unlock(&lock);
-		//printf("-->%s %d\n", sh, counter); 
-		//usleep(0.5);
+		//pthread_spin_unlock(&lock);	
 	}
 	return NULL;
 }
