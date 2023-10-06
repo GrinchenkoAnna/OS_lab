@@ -14,18 +14,15 @@ void sum(int me)
 {
 	int part = me;
 	int offset = 75000000;
-	//std::cout << "part: " << part << ", first: " << first+part*75000000 << ", last: " << last-(3-part)*offset << "\n";
 	
 	long long unsigned int res = 0;
-	for (int i = first+part*75000000; i <= last-(3-part)*offset; i++)
+	for (unsigned int i = first+part*75000000; i <= last-(3-part)*offset; i++)
     {
         res = res + i;
     }
     
     tmutex.lock();
-    //std::cout << "result after sum " << part << ": " << res << "\n";    
     result = result + res;
-    //std::cout << "result after sum " << part << ": " << result << "\n";  
     tmutex.unlock();
 }
 
