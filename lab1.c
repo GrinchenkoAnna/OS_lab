@@ -87,11 +87,11 @@ void get_pid_and_ppid(const char* pname)
 int main()
 {        
 
-    char* arg_list2[] = {"atom", NULL};    
+    char* arg_list1[] = {"atom", NULL};    
     spawn("atom", arg_list2);  
     get_pid_and_ppid("atom");
     
-    char* arg_list3[] = {"emacs", NULL};    
+    char* arg_list2[] = {"emacs", NULL};    
     spawn("emacs", arg_list3);
     get_pid_and_ppid("emacs");    
     
