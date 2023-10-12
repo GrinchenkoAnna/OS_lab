@@ -10,7 +10,7 @@ const unsigned int last = 399999999; //399 999 999
 long long unsigned int result = 0; //результат вычислений
 unsigned int parts[4] = {0, 1, 2, 3}; /*значения аргументов потока*/
 pthread_t threads[4]; /*массив с id потоков*/
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; /*исключающий семафор/мьютекс*/
+//pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; /*исключающий семафор/мьютекс*/
 
 void* sum(void* me)  /*потоковая функция*/
 {
@@ -25,9 +25,9 @@ void* sum(void* me)  /*потоковая функция*/
     }
     
 	/*если не защищать переменную мьютексами, результат не изменится. В данном случае не имеет значения, в какой последовательности было проведено суммирование*/
-    pthread_mutex_lock(&mutex); /*захват потоком исключающего семафора*/
+    //pthread_mutex_lock(&mutex); /*захват потоком исключающего семафора*/
     result = result + res; /*итоговый результат*/
-    pthread_mutex_unlock(&mutex); /*освобождение исключающего семафора*/
+    //pthread_mutex_unlock(&mutex); /*освобождение исключающего семафора*/
 }
 
 int main()

@@ -8,7 +8,6 @@ const unsigned int first = 100000000; //100 000 000
 const unsigned int last = 399999999; //399 999 999
 long long unsigned int result = 0;
 
-std::mutex tmutex;
 
 void sum(int me)
 {
@@ -21,9 +20,7 @@ void sum(int me)
         res = res + i;
     }
     
-    tmutex.lock();
     result = result + res;
-    tmutex.unlock();
 }
 
 int main()
